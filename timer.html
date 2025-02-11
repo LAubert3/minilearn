@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Timer</title>
+  </head>
+
+  <body class="container">
+    <nav>
+      <div id="nav-layout">
+        <button id="menu">☰</button>
+        <img id="logo" src="./img/miniLogo.png" alt="" />
+      </div>
+      <div id="menulist" class="dropdown-menu" aria-labelledby="menu">
+        <a class="dropdown-item" href="index.html">Home</a>
+        <a class="dropdown-item" href="timer.html">Timer</a>
+        <a class="dropdown-item" href="math.html">Math</a>
+        <a class="dropdown-item" href="brain.html">Brain Games</a>
+        <a class="dropdown-item" href="reachOut.html">Reach Out</a>
+        <a class="dropdown-item" href="credits.html">Credits</a>
+      </div>
+
+      <div id="timer-items">
+        <button id="meditate">Meditate</button>
+        <button id="workout">Workout</button>
+      </div>
+    </nav>
+
+    <div id="group">
+      <img id="timer-image" src="./img/meditate.png" alt="" />
+
+      <div class="timer-section">
+        <button id="timer">Start</button>
+        <span id="minutes">
+          <div id="minTxt">minute</div>
+          <input
+            type="text"
+            id="numberInput"
+            oninput="formatInput(this)"
+            maxlength="2"
+          />
+        </span>
+        <div id="timer-colon">:</div>
+        <span id="seconds">
+          <div id="secTxt">second</div>
+          <input
+            type="text"
+            id="numberInputTwo"
+            oninput="formatInput(this)"
+            maxlength="2"
+          />
+        </span>
+      </div>
+      <div id="w-cont">
+        <span class="w-word">Sets:</span>
+        <input type="number" class="w-features" id="intervals" />
+      </div>
+    </div>
+
+    <script defer src="timer.js"></script>
+    <script>
+      const menu = document.getElementById('menu')
+      const menulist = document.getElementById('menulist')
+      menulist.style.display = 'none'
+      let menuToggled = false
+
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation()
+        if (!menuToggled) {
+          menulist.style.display = 'block'
+        } else {
+          menulist.style.display = 'none'
+        }
+        menuToggled = !menuToggled
+        //console.log('Toggled = ', menuToggled)
+      })
+
+      document.addEventListener('click', (e) => {
+        if (!menulist.contains(e.target) && menuToggled) {
+          //console.log('clicked away')
+          menulist.style.display = 'none'
+          menuToggled = !menuToggled
+        }
+      })
+
+      function formatInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, '')
+
+        if (input.value.length > 2) {
+          input.value = input.value.slice(0, 2)
+        }
+      }
+    </script>
+
+    <audio preload="auto" src="./sounds/ding.mp3"></audio>
+    <audio preload="auto" src="./sounds/no.mp3"></audio>
+    <audio preload="auto" src="./sounds/chime.mp3"></audio>
+    <link rel="icon" href="path/to/favicon.png" type="image/png" />
+  </body>
+</html>

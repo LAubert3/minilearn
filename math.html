@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Math</title>
+  </head>
+
+  <body class="container">
+    <nav>
+      <div id="nav-layout">
+        <button id="menu">☰</button>
+        <img id="logo" src="./img/miniLogo.png" alt="" />
+      </div>
+      <div id="menulist" class="dropdown-menu" aria-labelledby="menu">
+        <a class="dropdown-item" href="index.html">Home</a>
+        <a class="dropdown-item" href="timer.html">Timer</a>
+        <a class="dropdown-item" href="math.html">Math</a>
+        <a class="dropdown-item" href="brain.html">Brain Games</a>
+        <a class="dropdown-item" href="reachOut.html">Reach Out</a>
+        <a class="dropdown-item" href="credits.html">Credits</a>
+      </div>
+    </nav>
+
+    <div id="main-container" class="main-math-scroll">
+      <div class="content-green">
+        <div class="padded">
+          <button class="btn" id="arithmatic">NEW</button>
+          <div>
+            <span class="spaced">
+              <span class="term-one">⠀</span>
+              <span class="operator">⠀</span>
+              <span class="term-two">⠀</span>
+              <span class="equal">=</span>
+              <div class="lay">
+                <input class="term-input" type="text" />
+                <button>Enter</button>
+              </div>
+              <span class="term-three">⠀</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="content-green">
+        <div class="padded">
+          <button class="btn" id="algebra">NEW</button>
+          <div>
+            <span class="spaced">
+              <span class="t-one">⠀</span>
+              <span class="op">⠀</span>
+              <span class="vari">⠀</span>
+              <div class="lay">
+                <input class="t-input" type="text" />
+                <button>Enter</button>
+              </div>
+              <span class="equal" id="equi">=</span>
+              <span class="t-three">⠀</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="content-orange">
+        <div class="padded">
+          <button class="btn" id="series">NEW</button>
+          <span class="spaced">
+                  <img id="sC" src="./img/sCircuit.png" alt="" />
+                <div class="lay">
+                  <input class="s-input" type="text" />
+                  <button>Enter</button>
+                </div>
+                <div id="r1" class="rRight"><span>Ω</span></div>
+                <div id="r2" class="rRight"><span>Ω</span></div>
+              <div id="r3" class="rRight"><span>Ω</span></div>
+          </span>
+        </div>
+      </div>
+      <br />
+      <div class="content-orange">
+        <div class="padded">
+          <div>
+            <button class="btn" id="parallel">NEW</button>
+            <div class="lay">
+              <input class="p-input" type="text" />
+              <button>Enter</button>
+            </div>
+            <div class="cont2">
+              <img id="pC" src="./img/pCircuit.png" alt="" />
+              <div class="oGroup">
+                <span id="o1">Ω</span><span id="o2">Ω</span
+                ><span id="o3">Ω</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const menu = document.getElementById('menu')
+      const menulist = document.getElementById('menulist')
+      menulist.style.display = 'none'
+      let menuToggled = false
+
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation()
+        if (!menuToggled) {
+          menulist.style.display = 'block'
+        } else {
+          menulist.style.display = 'none'
+        }
+        menuToggled = !menuToggled
+        //console.log('Toggled = ', menuToggled)
+      })
+
+      document.addEventListener('click', (e) => {
+        if (!menulist.contains(e.target) && menuToggled) {
+          //console.log('clicked away')
+          menulist.style.display = 'none'
+          menuToggled = !menuToggled
+        }
+      })
+    </script>
+
+    <script defer src="math.js"></script>
+
+    <audio preload="auto" src="./sounds/ding.mp3"></audio>
+    <audio preload="auto" src="./sounds/no.mp3"></audio>
+    <link rel="icon" href="path/to/favicon.png" type="image/png" />
+  </body>
+</html>

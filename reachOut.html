@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Contact</title>
+  </head>
+
+  <body class="container">
+    <nav>
+      <div id="nav-layout">
+        <button id="menu">☰</button>
+        <img id="logo" src="./img/miniLogo.png" alt="" />
+      </div>
+      <div id="menulist" class="dropdown-menu" aria-labelledby="menu">
+        <a class="dropdown-item" href="index.html">Home</a>
+        <a class="dropdown-item" href="timer.html">Timer</a>
+        <a class="dropdown-item" href="math.html">Math</a>
+        <a class="dropdown-item" href="brain.html">Brain Games</a>
+        <a class="dropdown-item" href="reachOut.html">Reach Out</a>
+        <a class="dropdown-item" href="credits.html">Credits</a>
+      </div>
+    </nav>
+
+      <h1 id="ack">Contact Me:</h1>
+      <div id="spcng">
+        <div class="ack">
+          <a href="https://github.com/LAubert3" target="_blank">
+            <img
+              src="https://github.com/favicon.ico"
+              alt="GitHub icon"
+              width="32"
+              height="32"
+            />
+            GitHub:
+          </a>
+        </div>
+
+        <div class="ack">
+          <a
+            href="https://linkedin.com/in/lawrence-aubert-269325211"
+            target="_blank"
+          >
+            <img
+              src="https://linkedin.com/favicon.ico"
+              alt="LinkedIn icon"
+              width="32"
+              height="32"
+            />
+            LinkedIn:
+          </a>
+        </div>
+      </div>
+
+    <script>
+      const menu = document.getElementById('menu')
+      const menulist = document.getElementById('menulist')
+      menulist.style.display = 'none'
+      let menuToggled = false
+
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation()
+        if (!menuToggled) {
+          menulist.style.display = 'block'
+        } else {
+          menulist.style.display = 'none'
+        }
+        menuToggled = !menuToggled
+        //console.log('Toggled = ', menuToggled)
+      })
+
+      document.addEventListener('click', (e) => {
+        if (!menulist.contains(e.target) && menuToggled) {
+          //console.log('clicked away')
+          menulist.style.display = 'none'
+          menuToggled = !menuToggled
+        }
+      })
+    </script>
+
+    <footer class="footer"></footer>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title id="title">Brain Games</title>
+  </head>
+
+  <body class="container">
+    <nav>
+      <div id="nav-layout">
+        <button id="menu">☰</button>
+        <img id="logo" src="./img/miniLogo.png" alt="" />
+      </div>
+      <div id="menulist" class="dropdown-menu" aria-labelledby="menu">
+        <a class="dropdown-item" href="index.html">Home</a>
+        <a class="dropdown-item" href="timer.html">Timer</a>
+        <a class="dropdown-item" href="math.html">Math</a>
+        <a class="dropdown-item" href="brain.html">Brain Games</a>
+        <a class="dropdown-item" href="reachOut.html">Reach Out</a>
+        <a class="dropdown-item" href="credits.html">Credits</a>
+      </div>
+
+      <select id="mySelects">
+        <option value="Select a deck" disabled selected hidden>
+          Select a game
+        </option>
+        <option value="nback">N-Back</option>
+        <option value="chimp">Chimp Test</option>
+      </select>
+
+      <button id="set-btn">Settings</button>
+      <div id="settings">
+        <div class="divider">
+          <div id="level">n Level:</div>
+          <input id="inp" type="number" />
+
+          <div id="times">Time Interval:</div>
+          <input id="inp-time" type="number" />
+        </div>
+      </div>
+    </nav>
+
+    <div id="c-container">
+      <div id="c-inp-container">
+        <button id="c-inp-btn">Generate</button>
+      </div>
+
+      <div id="c-canvas">
+        <div id="c-row1">
+          <div id="c-one">
+            <p id="one1" class="c-p"></p>
+          </div>
+          <div id="c-two">
+            <p id="two1" class="c-p"></p>
+          </div>
+          <div id="c-three">
+            <p id="three1" class="c-p"></p>
+          </div>
+        </div>
+
+        <div id="c-row2">
+          <div id="c-four">
+            <p id="four1" class="c-p"></p>
+          </div>
+          <div id="c-five">
+            <p id="five1" class="c-p"></p>
+          </div>
+          <div id="c-six">
+            <p id="six1" class="c-p"></p>
+          </div>
+        </div>
+
+        <div id="c-row3">
+          <div id="c-seven">
+            <p id="seven1" class="c-p"></p>
+          </div>
+          <div id="c-eight">
+            <p id="eight1" class="c-p"></p>
+          </div>
+          <div id="c-nine">
+            <p id="nine1" class="c-p"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span id="nSpan">
+      <div id="n-container">
+        <div id="inp-container">
+          <button id="inp-btn">Start</button>
+          <button id="stop">Stop</button>
+        </div>
+
+        <div id="canvas">
+          <div id="row1">
+            <div id="one"></div>
+            <div id="two"></div>
+            <div id="three"></div>
+          </div>
+
+          <div id="row2">
+            <div id="four"></div>
+            <div id="five"></div>
+            <div id="six"></div>
+          </div>
+
+          <div id="row3">
+            <div id="seven"></div>
+            <div id="eight"></div>
+            <div id="nine"></div>
+          </div>
+        </div>
+
+        <div id="buttons">
+          <button id="position">Position</button>
+          <button id="color">Color</button>
+        </div>
+
+        <div id="n-container">
+          <div id="n-level">n = 2</div>
+        </div>
+      </div>
+    </span>
+
+    <script>
+      let dingSound = new Audio('./sounds/ding.mp3')
+      let noSound = new Audio('./sounds/no.mp3')
+      let praiseSound = new Audio('./sounds/chimpPraise.mp3')
+      let cheerSound = new Audio('./sounds/cheer.mp3')
+      let laughSound = new Audio('./sounds/chimpLaugh.mp3')
+
+      const nThing = document.getElementById('nSpan')
+      const cThing = document.getElementById('c-container')
+      const gameSelect = document.getElementById('mySelects')
+      const divider = document.getElementsByClassName('divider')
+      nThing.style.display = 'none'
+      cThing.style.display = 'none'
+
+      const r1 = document.getElementById('c-row1')
+      const r2 = document.getElementById('c-row2')
+      const r3 = document.getElementById('c-row3')
+      r3.style.marginBottom = '50px'
+
+      function displayChanges() {
+        const windowWidth = window.innerWidth
+        const windowHeight = window.innerHeight
+
+        if (windowWidth <= 800) {
+          r1.style.height = '100px'
+          r1.style.width = '100%'
+
+          r2.style.height = '100px'
+          r2.style.width = '100%'
+
+          r3.style.height = '100px'
+          r3.style.width = '100%'
+          r3.style.marginBottom = '150px'
+        }
+      }
+      displayChanges()
+
+      gameSelect.addEventListener('change', function () {
+        if (gameSelect.value !== 'nback') {
+          nThing.style.display = 'none'
+          setBtn.style.display = 'none'
+          settings.style.display = 'none'
+        } else {
+          nThing.style.display = 'inline'
+          setBtn.style.display = 'inline'
+        }
+
+        if (gameSelect.value !== 'chimp') {
+          cThing.style.display = 'none'
+        } else {
+          cThing.style.display = 'inline'
+        }
+      })
+    </script>
+
+    <script defer src="nback.js"></script>
+    <script defer src="chimp.js"></script>
+    <script>
+      const menu = document.getElementById('menu')
+      const menulist = document.getElementById('menulist')
+      menulist.style.display = 'none'
+      let menuToggled = false
+
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation()
+        if (!menuToggled) {
+          menulist.style.display = 'block'
+        } else {
+          menulist.style.display = 'none'
+        }
+        menuToggled = !menuToggled
+        //console.log('Toggled = ', menuToggled)
+      })
+
+      document.addEventListener('click', (e) => {
+        if (!menulist.contains(e.target) && menuToggled) {
+          //console.log('clicked away')
+          menulist.style.display = 'none'
+          menuToggled = !menuToggled
+        }
+      })
+    </script>
+
+    <audio preload="auto" src="./sounds/ding.mp3"></audio>
+    <audio preload="auto" src="./sounds/no.mp3"></audio>
+    <audio preload="auto" src="./sounds/cheer.mp3"></audio>
+    <audio preload="auto" src="./sounds/chimpLaugh.mp3"></audio>
+    <audio preload="auto" src="./sounds/chimpPraise.mp3"></audio>
+    <link rel="icon" href="path/to/favicon.png" type="image/png" />
+  </body>
+</html>
