@@ -20,6 +20,7 @@ let nine = document.getElementById('nine')
 let position = document.getElementById('position')
 let color = document.getElementById('color')
 settings.style.display = 'none'
+setBtn.style.width = '80px'
 setBtn.style.display = 'none'
 inp.value = 2
 time.value = 2

@@ -532,11 +532,6 @@ p {
   position: fixed;
   top: 20%;
   left: 2%;
-  width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 }
 
 .divider {
@@ -548,12 +543,8 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-#n-container {
   width: 300px;
   height: 80px;
-  display: flex;
   justify-content: space-evenly;
 }
 
@@ -1153,7 +1144,13 @@ p {
 
   /*brain*/
   #c-container, #nSpan {
-    left: 3%;
+    left: 5%;
     width: 95%;
+  }
+
+  #nSpan {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 }

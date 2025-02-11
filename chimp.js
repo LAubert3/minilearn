@@ -8,6 +8,17 @@ const csix = document.getElementById('six1')
 const cseven = document.getElementById('seven1')
 const ceight = document.getElementById('eight1')
 const cnine = document.getElementById('nine1')
+const speaker = document.getElementById('speaker')
+let speakerToggled = false
+
+speaker.addEventListener('click', function () {
+  if (!speakerToggled) {
+    speaker.src = './img/speakerOff.png'
+  } else {
+    speaker.src = './img/speaker.png'
+  }
+  speakerToggled = !speakerToggled
+})
 
 let clist = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 let cbatch = [cone, ctwo, cthree, cfour, cfive, csix, cseven, ceight, cnine]
@@ -104,8 +115,10 @@ function handleTagClick() {
     }, 100)
     if (num === 9) {
       setTimeout(function () {
-        praiseSound.play()
-        cheerSound.play()
+        if (!speakerToggled) {
+          praiseSound.play()
+          cheerSound.play()
+        }
         setTimeout(() => {
           endsGame()
         }, 200)
@@ -116,7 +129,9 @@ function handleTagClick() {
     noSound.play()
     clist = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     setTimeout(function () {
-      laughSound.play()
+      if (!speakerToggled) {
+        laughSound.play()
+      }
       setRand()
       setTimeout(endsGame, 100)
     }, 100)
